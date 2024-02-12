@@ -9,13 +9,7 @@ const Blogs = () => {
 
     const [isPressed, setPressed] = useState(false);
     
-    const submitHandler = (e) => {
-        axios.post('http://localhost/3rdprac/api/insertpost').then(response=>{
-            console.log(response);
-        }).catch(error=> {
-            console.log(error)
-        })
-    };
+    
     
     const [data, setData] = useState([]);
     useEffect(() => {
