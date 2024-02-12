@@ -12,7 +12,6 @@ const CreateBlog = () => {
         formData.append('body', body);
         axios.post('http://localhost/3rdprac/api/insertpost', formData).then(response=>{
             console.log(response);
-        }).catch(error=> {
             console.log(error)
         })
     };
@@ -23,7 +22,7 @@ const CreateBlog = () => {
             <TextField fullWidth id="title" label="Title" variant="outlined" margin="normal"/>
             <TextField multiline fullWidth rows={4} id="body" label="Boby" variant="outlined" margin="normal" />
             <Box display="flex">
-                <Button sx={{ ml: "auto"}} color="success" variant="contained" type="submit">Save</Button>
+                <Button sx={{ ml: "auto"}} color="success" variant="contained" type="submit">Sasve</Button>
             </Box>   
         </form>
     
