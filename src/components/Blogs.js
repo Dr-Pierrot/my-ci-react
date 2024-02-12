@@ -1,19 +1,36 @@
-import React ,{useState} from "react";
+import React ,{useState, useEffect} from "react";
 import { Box, Typography, Grid, Card, CardContent, CardActions} from "@mui/material";
 import Button from "@mui/material/Button/Button";
 import CreateBlog from "../form/CreateBlog";
+import axios from "axios";
 
 
 const Blogs = () => {
 
     const [isPressed, setPressed] = useState(false);
+    
+    const submitHandler = (e) => {
+        axios.post('http://localhost/3rdprac/api/insertpost').then(response=>{
+            console.log(response);
+        }).catch(error=> {
+            console.log(error)
+        })
+    };
+    
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try{
+                const response = await axios.get('http://localhost/3rdprac/api/getpost');
+                setData(response.data);
+                console.log(response);
+            } catch (error){
+                console.log(error);
+            }
+        }
+        fetchData();
+    },[]);
 
-    // const handleOpenCreateButton = () => {
-    //     setPressed(!isPressed);
-    // };
-    // const handleCloseCreateButton = () => {
-    //     setPressed(isPressed);
-    // };
 
     return (
         <Grid
@@ -43,26 +60,32 @@ const Blogs = () => {
                     </Button>
                 </Box>
                 <Box>
-                {!isPressed ? <h1>hi</h1> : <CreateBlog name={'Title'} label={'Title'}/>}
+                {!isPressed ? <h1></h1> : <CreateBlog />}
                 </Box>
                 <hr/>
                 <br/>
-                
-                <Card>
-                    <CardContent>
-                        <Typography variant="h5" component="div">
-                            Context
-                        </Typography>
-                        <Typography variant="body2">
-                            Hello every body!
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button>
-                            Read More
-                        </Button>
-                    </CardActions>
+                {data.map(item=>(
+                  <Card sx={{ my:2, border:1, borderColor:"skyblue", background:"skyblue" }}> 
+                  <CardContent>
+                      <Typography variant="h5" component="div">
+                          {item.title}
+                      </Typography>
+                      <Typography variant="body2">
+                          {item.body}
+                      </Typography>
+                  </CardContent>
+                  <CardActions>
+                      <Button>
+                          Read More
+                      </Button>
+                  </CardActions>
                 </Card>
+                    
+                ))
+                }
+
+                
+                
             </Box>
             
         </Grid>
