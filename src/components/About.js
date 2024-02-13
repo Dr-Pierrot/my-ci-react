@@ -25,7 +25,7 @@ const About = () => {
                 </Typography>
                 <Typography
                     textAlign="center">
-                    We hope to bring you a long lasting life for the after life.
+                    We hope to bring you a long lasting life for the after life.a
                 </Typography>
             </Box>
             
