@@ -5,7 +5,7 @@ import axios from "axios";
 // import axios from "axios";
 
 
-const CreateBlog = () => {
+const CreateBlog = ({onPostSuccess}) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
@@ -15,9 +15,13 @@ const CreateBlog = () => {
         const form = document.getElementById("blog");
         const submitter = document.querySelector("button[value=save]");
         const formData = new FormData(form, submitter);
-        await axios.post('http://localhost/3rdprac/api/insertpost/', {formData}, {headers:{"Access-Control-Allow-Headers": "*"}})
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
+        try {
+            const response = await axios.post('http://localhost/3rdprac/api/insertpost/', formData);
+            console.log(response.data); // assuming the response contains data
+            onPostSuccess();
+        } catch (error) {
+            console.error('Error:', error);
+        }
 
     }
 
