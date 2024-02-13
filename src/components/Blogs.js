@@ -17,7 +17,7 @@ const Blogs = () => {
             try{
                 const response = await axios.get('http://localhost/3rdprac/api/getpost');
                 setData(response.data);
-                console.log(response);
+                // console.log(response);
             } catch (error){
                 console.log(error);
             }
@@ -53,13 +53,14 @@ const Blogs = () => {
                         {!isPressed ? 'Create Blog' : 'Cancel'}
                     </Button>
                 </Box>
+                <br/>
                 <Box>
-                {!isPressed ? <h1></h1> : <CreateBlog />}
+                {!isPressed ? '' : <CreateBlog />}
                 </Box>
                 <hr/>
                 <br/>
                 {data.map(item=>(
-                  <Card sx={{ my:2, border:1, borderColor:"skyblue", background:"skyblue" }}> 
+                  <Card sx={{ my:2, border:1, borderColor:"skyblue", background:"skyblue" }} key={item.id}> 
                   <CardContent>
                       <Typography variant="h5" component="div">
                           {item.title}

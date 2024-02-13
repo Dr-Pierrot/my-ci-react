@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try{
-                const response = await axios.get('http://localhost/3rdprac/api/mygetdata');
+                const response = await axios.get('http://localhost/3rdprac/api/getdata');
                 setData(response.data);
                 console.log(response);
             } catch (error){
@@ -48,7 +48,7 @@ const Home = () => {
                     <tbody>
                         {
                             data.map(item=>(
-                                <tr>
+                                <tr key={item.id}>
                                     <td>{item.id}</td>
                                     <td>{item.name}</td>
                                 </tr>

@@ -18,7 +18,9 @@ import { BrowserRouter   as Router, Link } from 'react-router-dom';
 import RoutesView from './routing/Routes';
 import './App.css';
 
+
 const App = () => {
+  
   const pages = ['blogs', 'about', 'contact'];
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -103,6 +105,7 @@ const App = () => {
           
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
+            
             variant="h5"
             noWrap
             component="a"
@@ -121,8 +124,9 @@ const App = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Link style={{textDecoration:"none", color:"white"}} to={`/`}>
+              <Link key="home" style={{textDecoration:"none", color:"white"}} to={`/`}>
               <Button
+                key="home"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -131,7 +135,7 @@ const App = () => {
               </Link>
               
               {pages.map((page) => (
-                <Link style={{textDecoration:"none", color:"white"}} to={`/${page}`}>
+                <Link key={page} style={{textDecoration:"none", color:"white"}} to={`/${page}`}>
                   <Button
                   key={page}
                   onClick={handleCloseNavMenu}
@@ -147,7 +151,7 @@ const App = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="" />
               </IconButton>
             </Tooltip>
             <Menu
